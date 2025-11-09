@@ -1,1 +1,740 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAU Africa Foundation - Grand Launch Fundraising Proposal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        .page {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+
+        @media (min-width: 768px) {
+            .page {
+                max-width: 8.5in;
+                padding: 0.75in;
+                box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            }
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 4px solid #1e3c72;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .logo-text {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .logo-text {
+                font-size: 2.5em;
+            }
+        }
+
+        .tagline {
+            font-size: 1em;
+            color: #7e22ce;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        @media (min-width: 768px) {
+            .tagline {
+                font-size: 1.2em;
+            }
+        }
+
+        .event-banner {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .event-banner {
+                padding: 30px;
+                margin: 30px 0;
+            }
+        }
+
+        .event-banner h1 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .event-banner h1 {
+                font-size: 2em;
+            }
+        }
+
+        .event-details {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 600px) {
+            .event-details {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .event-detail {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            color: #1e3c72;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #7e22ce;
+            padding-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            h2 {
+                font-size: 1.8em;
+                margin-top: 35px;
+                margin-bottom: 20px;
+            }
+        }
+
+        h3 {
+            color: #2a5298;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            h3 {
+                font-size: 1.4em;
+                margin-top: 25px;
+                margin-bottom: 15px;
+            }
+        }
+
+        h4 {
+            color: #5a67d8;
+            font-size: 1.05em;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: left;
+            font-size: 1em;
+            line-height: 1.7;
+        }
+
+        @media (min-width: 768px) {
+            p {
+                text-align: justify;
+            }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (min-width: 768px) {
+            .highlight-box {
+                padding: 25px;
+                margin: 25px 0;
+            }
+        }
+
+        .highlight-box h3 {
+            color: white;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .funding-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        @media (min-width: 600px) {
+            .funding-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                margin: 25px 0;
+            }
+        }
+
+        .funding-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 5px solid #7e22ce;
+        }
+
+        @media (min-width: 768px) {
+            .funding-item {
+                padding: 20px;
+            }
+        }
+
+        .funding-item h4 {
+            margin-top: 0;
+        }
+
+        .membership-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            overflow-x: auto;
+            display: block;
+        }
+
+        @media (min-width: 768px) {
+            .membership-table {
+                display: table;
+                font-size: 1em;
+            }
+        }
+
+        .membership-table th,
+        .membership-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .membership-table th {
+            background: #1e3c72;
+            color: white;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+        }
+
+        .membership-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            ul, ol {
+                margin-left: 30px;
+            }
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0;
+    /* REMOVED: position: sticky; and z-index */
+}
+
+@media (min-width: 768px) {
+    .action-buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+    }
+}
+
+/* ADD THIS NEW STYLE FOR FLOATING MINI BUTTONS (OPTIONAL) */
+.mini-action-bar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.mini-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mini-btn:hover {
+    transform: scale(1.1);
+}
+
+.mini-book {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.mini-contribute {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.mini-contact {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+@media print {
+    .mini-action-bar {
+        display: none !important;
+    }
+}
+
+        .cta-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        @media (min-width: 768px) {
+            .cta-box {
+                padding: 40px;
+                margin: 40px 0;
+            }
+        }
+
+        .cta-box h2 {
+            color: white;
+            border: none;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="logo-text">🌍 TAU AFRICA FOUNDATION</div>
+            <div class="tagline">Building Africa's Sovereign Wealth Through Kabiru Digital Currency</div>
+            <p style="font-weight: 600; color: #2a5298;">International Organization | Founded 2021</p>
+        </div>
+
+        <div class="event-banner">
+            <h1>🎉 GRAND LAUNCH FUNDRAISING EVENT 🎉</h1>
+            <p style="font-size: 1.3em; margin: 20px 0;">Join Us in Making History - Building Africa's Economic Future</p>
+            
+            <div class="event-details">
+                <div class="event-detail">
+                    <h4 style="color: white; margin: 0;">📅 Date</h4>
+                    <p style="margin: 0; font-size: 1.1em;">February 28th, 2026</p>
+                </div>
+                <div class="event-detail">
+                    <h4 style="color: white; margin: 0;">📍 Venue</h4>
+                    <p style="margin: 0; font-size: 1.1em;">Paris Hotel, Nairobi</p>
+                </div>
+                <div class="event-detail">
+                    <h4 style="color: white; margin: 0;">⏰ Time</h4>
+                    <p style="margin: 0; font-size: 1.1em;">9:00 AM - 5:00 PM</p>
+                </div>
+                <div class="event-detail">
+                    <h4 style="color: white; margin: 0;">🎯 Target</h4>
+                    <p style="margin: 0; font-size: 1.1em;">USD $150,000</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Executive Summary</h2>
+        <p>TAU Africa Foundation is revolutionizing Africa's economic landscape through the innovative Kabiru digital currency - a value-based financial system designed to empower every African with access to wealth creation, financial literacy, and economic independence.</p>
+
+        <div class="highlight-box">
+            <h3>Why TAU Africa Foundation?</h3>
+            <ul style="color: white;">
+                <li><strong>Proven Leadership:</strong> Founded by Magero Asa Rateng with experienced co-founders and partners</li>
+                <li><strong>Revolutionary Technology:</strong> Unique Proof-of-Value mining system</li>
+                <li><strong>Comprehensive Ecosystem:</strong> Five integrated applications</li>
+                <li><strong>Social Impact:</strong> AUFFI programs and Par Sirai Cultural Center</li>
+            </ul>
+        </div>
+
+        <h2>Funding Requirements - USD $150,000</h2>
+        
+        <div class="funding-grid">
+            <div class="funding-item">
+                <h4>1. Apps Infrastructure</h4>
+                <p><strong>$45,000 (30%)</strong></p>
+                <ul>
+                    <li>5 core applications</li>
+                    <li>Server infrastructure</li>
+                    <li>Security systems</li>
+                </ul>
+            </div>
+
+            <div class="funding-item">
+                <h4>2. Blockchain Infrastructure</h4>
+                <p><strong>$20,000 (13.3%)</strong></p>
+                <ul>
+                    <li>Blockchain setup</li>
+                    <li>Mining mechanism</li>
+                    <li>Wallet systems</li>
+                </ul>
+            </div>
+
+            <div class="funding-item">
+                <h4>3. Membership Systems</h4>
+                <p><strong>$18,000 (12%)</strong></p>
+                <ul>
+                    <li>Ledger creation</li>
+                    <li>Mining rights</li>
+                    <li>Member onboarding</li>
+                </ul>
+            </div>
+
+            <div class="funding-item">
+                <h4>4. Operational Bodies</h4>
+                <p><strong>$35,000 (23.3%)</strong></p>
+                <ul>
+                    <li>TAU & Valenta</li>
+                    <li>Par Sirai CLC</li>
+                    <li>Customer care</li>
+                </ul>
+            </div>
+
+            <div class="funding-item">
+                <h4>5. AI Marketing</h4>
+                <p><strong>$12,000 (8%)</strong></p>
+                <ul>
+                    <li>Marketing modules</li>
+                    <li>Brand campaigns</li>
+                    <li>Social media</li>
+                </ul>
+            </div>
+
+            <div class="funding-item">
+                <h4>6. Pilot Launch</h4>
+                <p><strong>$20,000 (13.4%)</strong></p>
+                <ul>
+                    <li>Media coverage</li>
+                    <li>Launch coordination</li>
+                    <li>Operations capital</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>Event Program - February 28th, 2026</h2>
+        
+        <table class="membership-table">
+            <tr>
+                <th>Time</th>
+                <th>Activity</th>
+            </tr>
+            <tr>
+                <td>8:30 AM</td>
+                <td>Registration & Welcome</td>
+            </tr>
+            <tr>
+                <td>9:00 AM</td>
+                <td>Opening Ceremony</td>
+            </tr>
+            <tr>
+                <td>9:30 AM</td>
+                <td>Vision Presentation</td>
+            </tr>
+            <tr>
+                <td>10:45 AM</td>
+                <td>Tea Break</td>
+            </tr>
+            <tr>
+                <td>11:15 AM</td>
+                <td>Leadership Speeches</td>
+            </tr>
+            <tr>
+                <td>12:15 PM</td>
+                <td>Delegate Addresses</td>
+            </tr>
+            <tr>
+                <td>1:00 PM</td>
+                <td>Lunch & Entertainment</td>
+            </tr>
+            <tr>
+                <td>2:00 PM</td>
+                <td>Membership Presentation</td>
+            </tr>
+            <tr>
+                <td>3:30 PM</td>
+                <td>Q&A & Investment Session</td>
+            </tr>
+            <tr>
+                <td>4:15 PM</td>
+                <td>Recognition Ceremony</td>
+            </tr>
+            <tr>
+                <td>5:00 PM</td>
+                <td>Event Conclusion</td>
+            </tr>
+        </table>
+
+        <h2>Membership Categories</h2>
+
+        <table class="membership-table">
+            <tr>
+                <th>Category</th>
+                <th>Investment</th>
+                <th>Benefits</th>
+            </tr>
+            <tr>
+                <td><strong>TASK Member</strong></td>
+                <td>5,000 KSH/year</td>
+                <td>Mining rights, training, employment opportunities</td>
+            </tr>
+            <tr>
+                <td><strong>TALK Member</strong></td>
+                <td>10,000 KSH/year</td>
+                <td>All TASK benefits + priority access + voting rights</td>
+            </tr>
+            <tr>
+                <td><strong>Angel Investor</strong></td>
+                <td>$5,000 - $25,000</td>
+                <td>Equity stake, Kabiru allocation, 100-300% ROI</td>
+            </tr>
+            <tr>
+                <td><strong>Corporate Partner</strong></td>
+                <td>$10,000 - $50,000+</td>
+                <td>Revenue sharing 10-30%, market access</td>
+            </tr>
+            <tr>
+                <td><strong>Institutional Partner</strong></td>
+                <td>$25,000 - $100,000+</td>
+                <td>Board representation, continental expansion</td>
+            </tr>
+        </table>
+
+        <h2>2026 Roadmap</h2>
+
+        <div class="highlight-box">
+            <h3>Complete Alpha, Beta, Theta Testing in 2026</h3>
+            <ul style="color: white;">
+                <li><strong>Feb 28:</strong> Fundraising Event - Secure $150,000</li>
+                <li><strong>March:</strong> Infrastructure Setup & Development</li>
+                <li><strong>April 10:</strong> Official Launch</li>
+                <li><strong>April-May:</strong> Alpha Testing (1,000-2,000 users)</li>
+                <li><strong>June-August:</strong> Beta Testing (5,000-10,000 users)</li>
+                <li><strong>Sep-Nov:</strong> Theta Testing (20,000-50,000 users)</li>
+                <li><strong>December 1:</strong> Mainnet Launch (100,000 users)</li>
+            </ul>
+        </div>
+
+        <h3>Growth Projections</h3>
+        <div class="funding-grid">
+            <div class="funding-item">
+                <h4>Year 1 (2026)</h4>
+                <p><strong>100,000 Users</strong></p>
+                <p>Revenue: $1.8M<br>Profit: $720K<br>ROI: 720%</p>
+            </div>
+            <div class="funding-item">
+                <h4>Year 2 (2027)</h4>
+                <p><strong>500,000 Users</strong></p>
+                <p>Revenue: $12M<br>Profit: $5.4M<br>ROI: 5,400%</p>
+            </div>
+            <div class="funding-item">
+                <h4>Year 3 (2028)</h4>
+                <p><strong>2,000,000 Users</strong></p>
+                <p>Revenue: $45M<br>Profit: $22.5M<br>ROI: 22,500%</p>
+            </div>
+            <div class="funding-item">
+                <h4>Year 5 (2030)</h4>
+                <p><strong>10,000,000+ Users</strong></p>
+                <p>Africa Wealth Bank Operational</p>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h2>Join the Revolution</h2>
+            <p style="font-size: 1.2em;">Be part of Africa's economic awakening. Your contribution impacts millions of lives.</p>
+            <div style="margin-top: 20px;">
+                <p><strong>Limited founding partner positions available</strong></p>
+                <p>Early investors receive priority benefits and maximum returns</p>
+            </div>
+        </div>
+
+        <h2 id="contact">Contact Information</h2>
+        
+        <div style="background: #1e3c72; color: white; padding: 30px; border-radius: 10px; margin: 30px 0;">
+            <h3 style="color: white; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px;">Get in Touch</h3>
+            
+            <p style="margin-top: 20px;"><strong>📧 Email:</strong> <a href="mailto:grouptauafrica@gmail.com" style="color: #FFD700;">grouptauafrica@gmail.com</a></p>
+            
+            <p><strong>📱 Phone:</strong> <a href="tel:+254725646331" style="color: #FFD700;">+254 725 646 331</a> | <a href="tel:+254101646331" style="color: #FFD700;">+254 101 646 331</a></p>
+            
+            <p><strong>🌐 Website:</strong> <a href="http://www.tauafricagroup.co.ke" target="_blank" style="color: #FFD700;">www.tauafricagroup.co.ke</a></p>
+            
+            <p><strong>📍 Address:</strong> P.O. Box 9424-00200, Nairobi, Kenya<br>
+            <strong>🏢 Location:</strong> Njiru Estate, Nairobi Eastlands</p>
+
+            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.3);">
+                <h4 style="color: white; margin-bottom: 15px;">Leadership Team</h4>
+                <p><strong>Founder & CEO:</strong> Magero Asa Rateng</p>
+                <p><strong>Co-Founders:</strong> Choli Mwene Mabira, Ochieng Orudi Ayuak</p>
+                <p><strong>Founding Partners:</strong> Peter Mwangi, Karaya Nderitu, Lorna Mugambi, Allan Sikuku, Yakub Issak</p>
+            </div>
+
+            <p style="margin-top: 30px; opacity: 0.8;">Together, we're creating the Africa Wealth Bank for all Africans</p>
+            <p style="margin-top: 10px; font-style: italic;">Hotep.</p>
+        </div>
+
+        <!-- Booking Forms Section -->
+        <div id="book" style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 30px 0;">
+            <h2 style="margin-top: 0;">🎟️ Book Your Seat</h2>
+            <p>Secure your seat at the February 28th, 2026 event at Paris Hotel, Nairobi.</p>
+            
+            <form style="margin-top: 20px;">
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #1e3c72;">Full Name *</label>
+                    <input type="text" required placeholder="Enter your full name" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1em;">
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #1e3c72;">Email Address *</label>
+                    <input type="email" required placeholder="your.email@example.com" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1em;">
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #1e3c72;">Phone Number *</label>
+                    <input type="tel" required placeholder="+254 XXX XXX XXX" style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1em;">
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: 600; color: #1e3c72;">Attending As *</label>
+                    <select required style="width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 8px; font-size: 1em;">
+                        <option value="">Select category</option>
+                        <option value="individual">Individual Member</option>
+                        <option value="investor">Potential Investor</option>
+                        <option value="partner">Corporate Partner</option>
+                        <option value="delegate">Special Delegate</option>
+                        <option value="media">Media Representative</option>
+                    </select>
+                </div>
+                
+                <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer;">Confirm Seat Reservation</button>
+            </form>
+        </div>
+
+        <div id="contribute" style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin: 30px 0;">
+            <h2 style="margin-top: 0;">💰 Contribution Badges</h2>
+            <p>Choose your contribution level and receive recognition badges:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+                <div style="border: 3px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;">
+                    <div style="font-size: 2em;">⭐</div>
+                    <div style="font-weight: bold; color: #1e3c72;">Bronze Star</div>
+                    <div style="color: #7e22ce; font-size: 0.9em;">$500 - $2,499</div>
+                </div>
+                
+                <div style="border: 3px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;">
+                    <div style="font-size: 2em;">⭐⭐</div>
+                    <div style="font-weight: bold; color: #1e3c72;">Silver Star</div>
+                    <div style="color: #7e22ce; font-size: 0.9em;">$2,500 - $4,999</div>
+                </div>
+                
+                <div style="border: 3px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;">
+                    <div style="font-size: 2em;">⭐⭐⭐</div>
+                    <div style="font-weight: bold; color: #1e3c72;">Gold Star</div>
+                    <div style="color: #7e22ce; font-size: 0.9em;">$5,000 - $9,999</div>
+                </div>
+                
+                <div style="border: 3px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;">
+                    <div style="font-size: 2em;">⭐⭐⭐⭐</div>
+                    <div style="font-weight: bold; color: #1e3c72;">Platinum Star</div>
+                    <div style="color: #7e22ce; font-size: 0.9em;">$10,000 - $24,999</div>
+                </div>
+                
+                <div style="border: 3px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;">
+                    <div style="font-size: 2em;">⭐⭐⭐⭐⭐</div>
+                    <div style="font-weight: bold; color: #1e3c72;">Diamond Star</div>
+                    <div style="color: #7e22ce; font-size: 0.9em;">$25,000 - $49,999</div>
+                </div>
+                
+                <div style="border: 3px solid #ddd; border-radius: 10px; padding: 15px; text-align: center;">
+                    <div style="font-size: 2em;">🌟</div>
+                    <div style="font-weight: bold; color: #1e3c72;">Founder's Circle</div>
+                    <div style="color: #7e22ce; font-size: 0.9em;">$50,000+</div>
+                </div>
+            </div>
+
+            <div style="background: #fff; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 5px solid #7e22ce;">
+                <h4 style="margin-top: 0; color: #1e3c72;">Payment Information</h4>
+                <p><strong>Bank Details:</strong> [To be provided]<br>
+                <strong>M-PESA Paybill:</strong> [To be provided]</p>
+                <p style="font-size: 0.9em; font-style: italic;">Contact us for complete payment instructions.</p>
+            </div>
+        </div>
+
+        <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 40px; text-align: center; border-radius: 10px; margin: 40px 0;">
+            <h2 style="color: white; border: none; margin-bottom: 20px;">Ready to Make History?</h2>
+            <p style="font-size: 1.2em; margin-bottom: 20px;">Join us on February 28th, 2026 and be part of Africa's economic transformation</p>
+            <p style="font-size: 1.1em;">Call us now: <strong>+254 725 646 331</strong></p>
+            <p style="margin-top: 20px;">Email: <strong>grouptauafrica@gmail.com</strong></p>
+        </div>
+    </div>
+    <div class="mini-action-bar">
+    <button class="mini-btn mini-book" onclick="location.href='#book'" title="Book Seat">🎟️</button>
+    <button class="mini-btn mini-contribute" onclick="location.href='#contribute'" title="Contribute">💰</button>
+    <button class="mini-btn mini-contact" onclick="location.href='#contact'" title="Contact">📞</button>
+    </div>
+</body>
+  </html>
+
