@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll | Kabiru Credit Business Course</title>
+    <style>
+        :root {
+            --velvet-purple: #301934;
+            --royal-purple: #4b0082;
+            --accent-gold: #d4af37;
+            --soft-white: #f4f4f9;
+            --text-gray: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-gray);
+            background-color: var(--soft-white);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--velvet-purple), var(--royal-purple));
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-top: 8px solid var(--accent-gold);
+        }
+
+        h2 {
+            color: var(--velvet-purple);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .instruction-box {
+            background: #f0e6ff;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            color: var(--royal-purple);
+            border-left: 4px solid var(--royal-purple);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--velvet-purple);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: var(--royal-purple);
+            outline: none;
+        }
+
+        .payment-note {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            background: var(--velvet-purple);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 2rem;
+        }
+
+        button:hover {
+            background: var(--royal-purple);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .branding {
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>KABIRU ENROLLMENT</h1>
+    <div class="branding">UNIVERS FOUNDATION | KABIRU TECHNICAL TEAM</div>
+</header>
+
+<div class="container">
+    <div class="form-card">
+        <h2>Student Registration</h2>
+        
+        <div class="instruction-box">
+            <strong>Important:</strong> After submitting this form, ensure you have your <strong>Kabiru Artstore ID or Wallet Address</strong> ready. Course access is granted once your iKb Credits payment is verified in the app.
+        </div>
+
+        <form action="https://formsubmit.co/grouptauafrica@gmail.com" method="POST">
+            
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://kabiru-credits-artstore.lovable.app/">
+
+            <div class="form-group">
+                <label>Full Legal Name</label>
+                <input type="text" name="full_name" placeholder="As it appears on your ID" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" placeholder="Your primary contact email" required>
+            </div>
+
+            <div class="form-group">
+                <label>Kabiru Artstore Username / ID</label>
+                <input type="text" name="artstore_id" placeholder="Your unique app username" required>
+                <div class="payment-note">Required for credit verification and classroom access.</div>
+            </div>
+
+            <div class="form-group">
+                <label>Select Course Level</label>
+                <select name="course_level" required>
+                    <option value="intro_2_weeks">Introductory (2 Weeks) - 500 iKb</option>
+                    <option value="standard_4_weeks">Standard (4 Weeks) - 1000 iKb</option>
+                    <option value="advanced_validator">Advanced Validator (8 Weeks) - 2500 iKb</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Briefly describe your artistic value (Music, Tech, Art, etc.)</label>
+                <textarea name="artistic_value" rows="3" placeholder="Tell us how you plan to contribute to the ecosystem"></textarea>
+            </div>
+
+            <button type="submit">SUBMIT ENROLLMENT & PAY IN-APP</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Valentor. Established for the empowerment of Independent Citizens. <br>
+    All submissions are sent to the NADE Council for verification.
+</footer>
+
+</body>
+</html>
