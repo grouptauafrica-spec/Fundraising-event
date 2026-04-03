@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentor Mastery Portal | Sovereign Education</title>
+    <style>
+        :root { --vp: #301934; --rp: #4b0082; --gold: #d4af37; --bg: #fdfdfd; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; }
+
+        /* TOP PULL-DOWN NAVIGATION */
+        nav { 
+            background: var(--vp); color: white; position: sticky; top: 0; z-index: 1000; 
+            border-bottom: 4px solid var(--gold); padding: 10px 20px;
+        }
+        .nav-header { display: flex; justify-content: space-between; align-items: center; max-width: 1000px; margin: 0 auto; }
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { 
+            background: var(--rp); color: var(--gold); padding: 12px 24px; font-size: 16px; 
+            border: 1px solid var(--gold); cursor: pointer; border-radius: 5px; font-weight: bold;
+        }
+        .dropdown-content {
+            display: none; position: absolute; background-color: #fff; min-width: 280px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1; border-radius: 0 0 10px 10px;
+            overflow: hidden; border: 1px solid #ddd;
+        }
+        .dropdown-content a {
+            color: #333; padding: 14px 16px; text-decoration: none; display: block;
+            border-bottom: 1px solid #eee; transition: 0.2s;
+        }
+        .dropdown-content a:hover { background-color: #f1f1f1; color: var(--rp); }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* CONTENT AREA */
+        .main-container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .lesson-view { background: white; border-radius: 15px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); display: none; }
+        .lesson-view.active { display: block; animation: fadeIn 0.5s ease; }
+        
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 { color: var(--vp); border-bottom: 2px solid var(--gold); padding-bottom: 10px; }
+        .video-placeholder { width: 100%; aspect-ratio: 16/9; background: #000; border-radius: 10px; margin: 25px 0; border: 2px solid var(--gold); }
+        .detail-text { line-height: 1.8; font-size: 1.1rem; }
+
+        /* FOOTER NAV */
+        .controls { display: flex; justify-content: space-between; margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+        .btn { padding: 15px 35px; border-radius: 50px; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-next { background: var(--gold); color: var(--vp); }
+        .btn-prev { background: #eee; color: #666; }
+        .btn-exam { background: var(--rp); color: white; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-header">
+        <div>
+            <h2 style="color:var(--gold); margin:0; border:none; padding:0;">VALENTOR</h2>
+            <small>MASTERY ACADEMY</small>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">SELECT TRAINING WEEK ▾</button>
+            <div class="dropdown-content" id="week-selector">
+                </div>
+        </div>
+    </div>
+</nav>
+
+<div class="main-container" id="portal-root">
+    </div>
+
+<script>
+    const curriculum = [
+        {
+            week: 1, title: "Digital Onboarding & KYC",
+            body: `<h3>1.1 The Valentor Philosophy</h3><p>Transitioning from debt-based systems to sovereign value. This lesson establishes why we aim for Independence and how to secure your iKb Wallet digital vault.</p><h3>1.2 Account Security</h3><p>Establishing your KYC-verified profile within the Artstore to ensure your identity remains sovereign and protected.</p>`
+        },
+        {
+            week: 2, title: "The Economy of Value",
+            body: `<h3>2.1 Credit Acquisition</h3><p>Secure methods for acquiring iKb credits within the ecosystem gate.</p><h3>2.2 P2P Exchange</h3><p>How to share and trade tokens for real value while maintaining consumer ethics.</p>`
+        },
+        {
+            week: 3, title: "Artistic Value Creation",
+            body: `<h3>3.1 Production Standards</h3><p>Preparing high-quality digital assets for upload.</p><h3>3.2 Monetization</h3><p>Setting your own value in the Artstore and understanding how the Kabiru Team secures your Intellectual Property.</p>`
+        },
+        {
+            week: 4, title: "Sovereignty & Scaling",
+            body: `<h3>4.1 Business Growth</h3><p>Reinvesting iKb into new projects for exponential scaling.</p><h3>4.2 Governance</h3><p>The role of the NADE Council and transitioning to "Independent Citizen" status.</p>`
+        },
+        {
+            week: 5, title: "Premium Tier: Silver",
+            body: `<h3>5.1 Entry to Automation</h3><p>The Silver Tier requires 1500 credits. Benefits include 500MB decentralized storage and Lite AI Marketing tools to grow your initial audience presence.</p>`
+        },
+        {
+            week: 6, title: "Premium Tier: Gold",
+            body: `<h3>6.1 Professional Expansion</h3><p>The Gold Tier requires 2500 credits. This level unlocks 5GB of storage and Medium-tier AI Marketing automation for high-volume asset movement.</p>`
+        },
+        {
+            week: 7, title: "Premium Tier: Diamond",
+            body: `<h3>7.1 Master Sovereignty</h3><p>The Diamond Tier (3000 credits) represents total digital mastery. It includes 10GB storage and Advanced AI business workflows for the elite digital provider.</p>`
+        },
+        {
+            week: 8, title: "Final Master Validation",
+            body: `<h3>8.1 Graduation & Verification</h3><p>Completing this module validates your proficiency. You will be redirected to the official exam for "Verified Provider" certification.</p>`
+        }
+    ];
+
+    let activeWeek = 1;
+
+    function renderPortal() {
+        const root = document.getElementById('portal-root');
+        const selector = document.getElementById('week-selector');
+        
+        // Update Content
+        const data = curriculum[activeWeek - 1];
+        root.innerHTML = `
+            <div class="lesson-view active">
+                <p style="color:var(--gold); font-weight:bold; margin:0;">MODULE 0${data.week}</p>
+                <h2>${data.title}</h2>
+                <div class="video-placeholder"></div>
+                <div class="detail-text">${data.body}</div>
+                <div class="controls">
+                    <button class="btn btn-prev" onclick="changeWeek(-1)" ${activeWeek === 1 ? 'style="visibility:hidden"' : ''}>PREVIOUS</button>
+                    ${activeWeek < 8 ? 
+                        `<button class="btn btn-next" onclick="changeWeek(1)">COMPLETE & NEXT</button>` : 
+                        `<button class="btn btn-exam" onclick="goToExam()">TAKE FINAL EXAM</button>`
+                    }
+                </div>
+            </div>
+        `;
+
+        // Update Dropdown
+        selector.innerHTML = '';
+        curriculum.forEach(item => {
+            const a = document.createElement('a');
+            a.href = "#";
+            a.innerHTML = `Week ${item.week}: ${item.title}`;
+            a.onclick = (e) => { e.preventDefault(); activeWeek = item.week; renderPortal(); };
+            selector.appendChild(a);
+        });
+    }
+
+    function changeWeek(dir) {
+        activeWeek += dir;
+        renderPortal();
+        window.scrollTo(0,0);
+    }
+
+    function goToExam() {
+        window.location.href = "https://grouptauafrica-spec.github.io/Fundraising-event/Kabiru-exam-page.html";
+    }
+
+    renderPortal();
+</script>
+
+</body>
+</html>
