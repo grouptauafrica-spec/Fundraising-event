@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentor Pro | 8-Week Mastery Final</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        :root { --vp: #301934; --rp: #4b0082; --gold: #d4af37; --bg: #f8f9fa; }
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); display: flex; flex-wrap: wrap; height: 100vh; overflow: hidden; }
+        
+        #sidebar { flex: 0 0 340px; background: var(--vp); color: white; padding: 25px; overflow-y: auto; border-right: 5px solid var(--gold); box-sizing: border-box; }
+        #viewport { flex: 1; padding: 40px; overflow-y: auto; display: flex; justify-content: center; box-sizing: border-box; }
+
+        .content-card { width: 100%; max-width: 800px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); border-top: 6px solid var(--rp); box-sizing: border-box; }
+        h1 { color: var(--vp); text-align: center; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        .lesson-text { line-height: 1.7; color: #333; text-align: justify; margin-bottom: 30px; }
+
+        .nav-item { padding: 15px; margin-bottom: 10px; border-radius: 12px; cursor: pointer; background: rgba(255,255,255,0.06); display: flex; justify-content: space-between; border: 1px solid transparent; }
+        .nav-item.active { background: var(--rp); border-color: var(--gold); }
+        .nav-item.locked { opacity: 0.3; cursor: not-allowed; }
+
+        .btn { background: var(--vp); color: white; border: none; padding: 16px; border-radius: 10px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1.1rem; }
+        .btn-gold { background: var(--gold); color: var(--vp); margin-top: 10px; }
+
+        .unlock-zone { background: #fffcf0; border: 2px dashed var(--gold); padding: 20px; border-radius: 15px; text-align: center; width: 100%; max-width: 280px; margin: 0 auto; box-sizing: border-box; }
+        .code-input { padding: 12px; width: 100%; max-width: 140px; border: 2px solid #ddd; border-radius: 8px; text-align: center; font-size: 1.2rem; margin: 10px 0; }
+
+        .q-box { margin-bottom: 25px; padding: 20px; border-left: 5px solid var(--gold); background: #fafafa; }
+        .opt { display: block; padding: 12px; background: white; border: 1px solid #ddd; margin: 8px 0; border-radius: 8px; cursor: pointer; }
+
+        /* CERTIFICATE FIX: Hidden from UI, rendered at full scale for PDF */
+        #cert-wrapper { position: absolute; left: -9999px; top: 0; }
+        #certificate-render {
+            width: 1050px; height: 750px; background: var(--vp); color: white; 
+            border: 25px solid var(--gold); padding: 40px; box-sizing: border-box; 
+            text-align: center; font-family: 'Georgia', serif;
+        }
+        .cert-inner { border: 5px solid #d4af37; height: 100%; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; box-sizing: border-box; position: relative; }
+        
+        .seal { font-size: 70px; color: rgba(212, 175, 55, 0.2); position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; }
+
+        @media (max-width: 850px) { body { overflow-y: auto; } #sidebar { flex: 0 0 100%; border-right: none; } #viewport { padding: 15px; } }
+    </style>
+</head>
+<body>
+
+<nav id="sidebar">
+    <div style="text-align:center; margin-bottom:30px;">
+        <h2 style="margin:0; letter-spacing:2px;">VALENTOR PRO</h2>
+        <p style="color:var(--gold); font-size:0.8rem;">MASTERY ACADEMY</p>
+    </div>
+    <div id="nav-container"></div>
+</nav>
+
+<main id="viewport">
+    <div id="lesson-view" class="content-card">
+        <h1 id="view-title">Portal Access</h1>
+        <div id="view-body" class="lesson-text">Select a week from the sidebar to view the curriculum and unlock your assessment.</div>
+        <div id="unlock-container" class="unlock-zone" style="display:none;">
+            <p style="font-weight:bold; margin:0;">VERIFICATION CODE</p>
+            <input type="text" id="teacher-code" class="code-input" placeholder="V###">
+            <button class="btn btn-gold" onclick="attemptUnlock()" style="padding:10px; font-size:0.9rem;">Unlock Exam</button>
+        </div>
+    </div>
+
+    <div id="exam-view" class="content-card" style="display:none;">
+        <h1 id="exam-title">Assessment</h1>
+        <div id="exam-questions"></div>
+        <button class="btn btn-gold" onclick="submitExam()">Submit for Certification</button>
+    </div>
+
+    <div id="success-view" class="content-card" style="display:none; text-align:center;">
+        <h1 style="border:none; font-size:2.5rem; color:var(--rp);">MASTERY COMPLETE</h1>
+        <p class="lesson-text">You are now recognized as an Independent Citizen of the Kabiru Digital Economy. Download your official signed certificate below.</p>
+        <button class="btn btn-gold" onclick="printCertificate()">Download Signed PDF</button>
+    </div>
+</main>
+
+<div id="cert-wrapper">
+    <div id="certificate-render">
+        <div class="cert-inner">
+            <div class="seal">☥</div>
+            <div style="z-index: 1;">
+                <h1 style="font-size:75px; color:#d4af37; border:none; margin:0; letter-spacing:10px;">CERTIFICATE</h1>
+                <p style="font-size:20px; letter-spacing:5px;">OF SOVEREIGN DIGITAL MASTERY</p>
+                <p style="font-size:24px; margin-top:30px;">This certifies the technical and economic proficiency of</p>
+                <h2 id="pdf-name" style="font-size:55px; color:#d4af37; border-bottom:3px solid #d4af37; display:inline-block; padding:0 40px; margin: 20px 0;">[NAME]</h2>
+                <p style="font-size:22px;">Region: <b id="pdf-region">[REGION]</b></p>
+                <p style="font-size:20px; max-width:850px; margin:30px auto; line-height:1.6;">Successfully fulfilled the 8-Week Valentor Business Course. Verified under GCV Standards as a Diamond-tier Independent Citizen and Value Provider.</p>
+                <p style="font-size:22px; color:#d4af37;">Issued: <span id="pdf-date"></span></p>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-top:40px; padding: 0 40px; z-index: 1;">
+                <div style="text-align:center; width:280px;">
+                    <div style="font-family:'Brush Script MT', cursive; font-size:35px; color:#d4af37; border-bottom:1px solid #d4af37; margin-bottom:5px;">Magero Asa Rateng</div>
+                    <div style="font-size:16px; font-weight:bold; letter-spacing:1px;">FOUNDER & CEO</div>
+                </div>
+                <div style="font-size:50px; color:#d4af37;">☥</div>
+                <div style="text-align:center; width:280px;">
+                    <div style="font-family:'Brush Script MT', cursive; font-size:35px; color:#d4af37; border-bottom:1px solid #d4af37; margin-bottom:5px;">Valentor Admin</div>
+                    <div style="font-size:16px; font-weight:bold; letter-spacing:1px;">TEAM REPRESENTATIVE</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const unlockKeys = ["V111", "V222", "V333", "V444", "V555", "V666", "V777", "V888"];
+    let progress = 0;
+    let activeIdx = -1;
+
+    const courseData = [
+        { 
+            title: "Week 1: The Kabiru Value Logic", 
+            lecture: "Introduction to GCV (Global Consensus Value). 1 iKb token = 100,000 units. Entry gateway uses Kabiru Credits (1 unit value). Focus on the Valentor Philosophy of Independence.",
+            questions: [
+                { t: "What is the GCV value of 1 iKb token?", o: ["1 unit", "10,000 units", "100,000 units"], c: 2 },
+                { t: "What is the primary entry gate for new users?", o: ["Credit Cards", "Kabiru Credits (1 unit)", "Bank Loans"], c: 1 },
+                { t: "KYC verification is required to:", o: ["Collect data", "Secure the Artstore ID & iKb Wallet", "Charge monthly fees"], c: 1 },
+                { t: "Valentor Philosophy focuses on:", o: ["Employment", "Sovereign Independence", "Government Grants"], c: 1 },
+                { t: "The iKb Wallet acts as your:", o: ["Traditional bank", "Sovereign digital vault", "Social media profile"], c: 1 }
+            ]
+        },
+        { 
+            title: "Week 2: Identity & Security", 
+            lecture: "Mastering Artstore Navigation and transaction auditing. Your Artstore ID is your sovereign address. Learning to secure your identity during P2P value exchanges.",
+            questions: [
+                { t: "What is your unique sovereign address?", o: ["Email", "Artstore ID", "Phone Number"], c: 1 },
+                { t: "Transaction auditing is done via:", o: ["Calling Support", "In-app Financial Tracking", "External Receipts"], c: 1 },
+                { t: "Digital security protects you from:", o: ["Slow internet", "Identity theft and asset loss", "Software updates"], c: 1 },
+                { t: "P2P exchange allows users to:", o: ["Borrow money", "Trade value directly", "Delete accounts"], c: 1 },
+                { t: "The Kabiru ecosystem is a:", o: ["Bank", "Digital Civilization", "Retail Store"], c: 1 }
+            ]
+        },
+        { 
+            title: "Week 3: Credit & Value Flow", 
+            lecture: "Methods of acquisition: Direct Purchase, P2P, and Declaration Mining. Focus on Consumer Ethics: recognizing that downloads support the internal value loop.",
+            questions: [
+                { t: "What is 'Declaration Mining'?", o: ["Physical mining", "Mining your talent/skills into credits", "Ad clicks"], c: 1 },
+                { t: "Consumer ethics in Kabiru means:", o: ["Free downloads", "Exchanging value to support creators", "Password sharing"], c: 1 },
+                { t: "Direct Purchase is a method of:", o: ["Paying debt", "Acquiring iKb safely", "Advertising"], c: 1 },
+                { t: "The internal value loop stabilizes:", o: ["Internet speed", "The iKb token value", "Social media likes"], c: 1 },
+                { t: "Sovereign citizens must understand:", o: ["Value flow", "Stock markets", "Politics"], c: 0 }
+            ]
+        },
+        { 
+            title: "Week 4: Asset Monetization", 
+            lecture: "Setting value via Upload & Monetize protocol. IP Protection: encryption and security standards implemented by the Kabiru Tech Team for your digital assets.",
+            questions: [
+                { t: "Where do you set your asset's value?", o: ["YouTube", "The Artstore Monetize Protocol", "Email"], c: 1 },
+                { t: "Who secures your Intellectual Property (IP)?", o: ["Kabiru Technical Team", "Copyright Office", "Public Domain"], c: 0 },
+                { t: "Internal Marketing helps you reach:", o: ["TV audiences", "Users within the app ecosystem", "Spam lists"], c: 1 },
+                { t: "Production Standards ensure your work is:", o: ["Cheap", "High-quality and High-value", "Fast"], c: 1 },
+                { t: "Monetization requires a:", o: ["Verified account", "Credit card", "Loan"], c: 0 }
+            ]
+        },
+        { 
+            title: "Week 5: Reinvestment & Scaling", 
+            lecture: "The path to sovereignty through reinvesting iKb into new projects. Transitioning to 'Independent Citizen' status through technical self-sufficiency.",
+            questions: [
+                { t: "Scaling your digital business involves:", o: ["Bank loans", "Reinvesting iKb", "Selling assets"], c: 1 },
+                { t: "Technical Self-Sufficiency involves:", o: ["Hiring staff", "App/Device DIY maintenance", "Buying new gear"], c: 1 },
+                { t: "Reinvesting credits leads to:", o: ["Account closure", "Sovereign growth", "More debt"], c: 1 },
+                { t: "Independent Citizen status represents:", o: ["Dependency", "Economic Sovereignty", "Employment"], c: 1 },
+                { t: "DIY maintenance ensures:", o: ["High costs", "Constant app uptime", "Hardware failure"], c: 1 }
+            ]
+        },
+        { 
+            title: "Week 6: Silver Membership", 
+            lecture: "Premium Tier 1: Silver (1500 credits). Includes 500MB storage and Lite AI Marketing. The first gate for automated outreach within the ecosystem.",
+            questions: [
+                { t: "Cost of Silver Membership?", o: ["1000 credits", "1500 credits", "2500 credits"], c: 1 },
+                { t: "Storage included in Silver?", o: ["100MB", "500MB", "1GB"], c: 1 },
+                { t: "Silver tier provides:", o: ["Advanced Marketing", "Lite AI Marketing", "No Marketing"], c: 1 },
+                { t: "Membership fees are paid:", o: ["Monthly in credits", "Yearly in cash", "Once"], c: 0 },
+                { t: "Silver tier is for:", o: ["Masters", "New premium users", "Validators"], c: 1 }
+            ]
+        },
+        { 
+            title: "Week 7: Gold Membership", 
+            lecture: "Premium Tier 2: Gold (2500 credits). Includes 5GB storage and Medium AI Marketing. Designed for active creators scaling their production output.",
+            questions: [
+                { t: "Cost of Gold Membership?", o: ["1500 credits", "2500 credits", "3000 credits"], c: 1 },
+                { t: "Storage included in Gold?", o: ["1GB", "5GB", "10GB"], c: 1 },
+                { t: "Medium AI Marketing provides:", o: ["Basic ads", "Automated outreach for creators", "Global TV"], c: 1 },
+                { t: "Gold tier targets:", o: ["Passive users", "Active creators/entrepreneurs", "Students"], c: 1 },
+                { t: "Upgrading to Gold increases:", o: ["Storage and reach", "Taxes", "Account risk"], c: 0 }
+            ]
+        },
+        { 
+            title: "Week 8: Mastery & Diamond", 
+            lecture: "Final Tier: Diamond (3000 credits). Includes 10GB storage, Advanced AI Marketing, and full GCV Master status. Graduating as a 'Verified Provider'.",
+            questions: [
+                { t: "Diamond Membership fee?", o: ["2500 credits", "3000 credits", "5000 credits"], c: 1 },
+                { t: "Diamond storage capacity?", o: ["5GB", "10GB", "Unlimited"], c: 1 },
+                { t: "Final certification grants status as:", o: ["Student", "Verified Provider (Diamond)", "Guest"], c: 1 },
+                { t: "Diamond AI Marketing is for:", o: ["Spam", "High-tier monetization", "Gaming"], c: 1 },
+                { t: "Diamond Citizens operate under:", o: ["Local rates", "GCV Standards", "Minimum wage"], c: 1 }
+            ]
+        }
+    ];
+
+    function renderNav() {
+        const container = document.getElementById('nav-container');
+        container.innerHTML = '';
+        courseData.forEach((week, i) => {
+            const locked = i > progress;
+            const item = document.createElement('div');
+            item.className = `nav-item ${locked ? 'locked' : ''} ${i === activeIdx ? 'active' : ''}`;
+            item.innerHTML = `<span>${week.title}</span> <span>${locked ? '🔒' : '✔️'}</span>`;
+            item.onclick = () => { if(!locked) showLesson(i); };
+            container.appendChild(item);
+        });
+    }
+
+    function showLesson(i) {
+        activeIdx = i;
+        document.getElementById('view-title').innerText = courseData[i].title;
+        document.getElementById('view-body').innerHTML = `<b>STUDY MATERIAL:</b><br><br>${courseData[i].lecture}`;
+        document.getElementById('unlock-container').style.display = 'block';
+        document.getElementById('lesson-view').style.display = 'block';
+        document.getElementById('exam-view').style.display = 'none';
+        document.getElementById('success-view').style.display = 'none';
+        renderNav();
+    }
+
+    function attemptUnlock() {
+        if (document.getElementById('teacher-code').value.toUpperCase() === unlockKeys[activeIdx]) {
+            startExam();
+        } else { alert("Unauthorized access."); }
+    }
+
+    function startExam() {
+        document.getElementById('lesson-view').style.display = 'none';
+        document.getElementById('exam-view').style.display = 'block';
+        const qBox = document.getElementById('exam-questions');
+        qBox.innerHTML = '';
+        courseData[activeIdx].questions.forEach((q, qi) => {
+            let opts = q.o.map((o, oi) => `<label class="opt"><input type="radio" name="q${qi}" value="${oi}"> ${o}</label>`).join('');
+            qBox.innerHTML += `<div class="q-box"><b>${qi+1}. ${q.t}</b>${opts}</div>`;
+        });
+    }
+
+    function submitExam() {
+        let score = 0;
+        courseData[activeIdx].questions.forEach((q, qi) => {
+            const sel = document.querySelector(`input[name="q${qi}"]:checked`);
+            if (sel && parseInt(sel.value) === q.c) score++;
+        });
+        if (score >= 4) {
+            if (activeIdx === 7) { finishCourse(); } 
+            else { progress = Math.max(progress, activeIdx + 1); showLesson(activeIdx + 1); }
+        } else { alert("Insufficient Mastery. Review the material."); }
+    }
+
+    function finishCourse() {
+        const name = prompt("Student Full Name:");
+        const region = prompt("Region:");
+        const d = new Date();
+        const mo = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        document.getElementById('pdf-name').innerText = name || "Master Citizen";
+        document.getElementById('pdf-region').innerText = region || "Kabiru Ecosystem";
+        document.getElementById('pdf-date').innerText = `${mo[d.getMonth()]} ${d.getFullYear()}`;
+        document.getElementById('exam-view').style.display = 'none';
+        document.getElementById('success-view').style.display = 'block';
+    }
+
+    function printCertificate() {
+        const element = document.getElementById('certificate-render');
+        const opt = {
+            margin: 0,
+            filename: 'Valentor_Sovereign_Mastery.pdf',
+            image: { type: 'jpeg', quality: 1 },
+            html2canvas: { scale: 3, useCORS: true, logging: false, width: 1050, height: 750 },
+            jsPDF: { unit: 'px', format: [1050, 750], orientation: 'landscape' }
+        };
+        html2pdf().set(opt).from(element).save();
+    }
+
+    renderNav();
+</script>
+</body>
+</html>
