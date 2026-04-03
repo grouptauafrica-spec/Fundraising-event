@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kabiru Mastery Portal | Agent-Validator Education</title>
+    <title>Kabiru Mastery Portal | Kabiru Credit System Class</title>
     <style>
         :root { --vp: #301934; --rp: #4b0082; --gold: #d4af37; --bg: #fdfdfd; }
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); color: #333; }
@@ -56,7 +56,7 @@
     <div class="nav-header">
         <div>
             <h2 style="color:var(--gold); margin:0; border:none; padding:0;">KABIRU</h2>
-            <small>MASTERY CLASSROOM</small>
+            <small>MASTERY CLASS</small>
         </div>
         <div class="dropdown">
             <button class="dropbtn">SELECT TRAINING WEEK ▾</button>
@@ -72,36 +72,36 @@
 <script>
     const curriculum = [
         {
-            week: 1, title: "Digital Onboarding & KYC, Kabiru Digital Artstore app Environment",
-            body: `<h3>1.1 The Kabiru Philosophy</h3><p>Kabiru App Environment and Navigation. Transitioning user from debt-based systems to sovereign digital credit value economy. This lesson establishes why we aim for Independence and how to secure your iKb Wallet digital vault.</p><h3>1.2 Eligibility and Technical requirements. Account Security</h3><p>Whos eligible to earn, hold kabiru digital credits. App Safety and Establishing your KYC-verified profile within the Artstore to ensure your identity remains sovereign and protected while all users enjoy the market standard security.</p>`
-        }
-        {
-            week: 2, title: "Understanding Kabiru credits, The Economy of Value",
-            body: `<h3>2.1 What is Kabiru credit used for and where? Credit Acquisition</h3><p>Uses of Kabiru. Secure methods for acquiring iKb credits within the ecosystem gate.</p><h3>2.2 P2P Exchange</h3><p>How to share and trade tokens for real value while maintaining consumer ethics.</p>`
+            week: 1, title: "Digital Onboarding & KYC",
+            body: `<h3>1.1 The Valentor Philosophy</h3><p>Transitioning from debt-based systems to sovereign value. This lesson establishes why we aim for Independence and how to secure your iKb Wallet digital vault.</p><h3>1.2 Account Security</h3><p>Establishing your KYC-verified profile within the Artstore to ensure your identity remains sovereign and protected.</p>`
         },
         {
-            week: 3, title: "Kabiru Value for value, Artistic Value Creation",
-            body: `<h3>3.1 Production Standards, upload & market requirement</h3><p>Preparing high-quality digital assets for upload.</p><h3>3.2 Monetization</h3><p>Setting your own value in the Artstore and understanding how the Kabiru Team secures your Intellectual Property.</p>`
+            week: 2, title: "The Economy of Value",
+            body: `<h3>2.1 Credit Acquisition</h3><p>Secure methods for acquiring iKb credits within the ecosystem gate.</p><h3>2.2 P2P Exchange</h3><p>How to share and trade tokens for real value while maintaining consumer ethics.</p>`
         },
         {
-            week: 4, title: "Sovereignty, Growth & Scaling",
-            body: `<h3>4.1 Business Growth</h3><p>Reinvesting iKb credits into new projects for exponential scaling.How to convert your physical value into digital financial asset</p><h3>4.2 Governance</h3><p>The role of the NADE Council and transitioning to "Independent Citizen" status.</p>`
+            week: 3, title: "Artistic Value Creation",
+            body: `<h3>3.1 Production Standards</h3><p>Preparing high-quality digital assets for upload.</p><h3>3.2 Monetization</h3><p>Setting your own value in the Artstore and understanding how the Kabiru Team secures your Intellectual Property.</p>`
+        },
+        {
+            week: 4, title: "Sovereignty & Scaling",
+            body: `<h3>4.1 Business Growth</h3><p>Reinvesting iKb into new projects for exponential scaling.</p><h3>4.2 Governance</h3><p>The role of the NADE Council and transitioning to "Independent Citizen" status.</p>`
         },
         {
             week: 5, title: "Premium Tier: Silver",
-            body: `<h3>5.1 Entry to Automation</h3><p>The Silver Tier requires 1500 credits monthly. Benefits include 500MB decentralized storage and Lite AI Marketing to County level, all in-app restrictions lifted to grow your initial audience presence.</p>`
+            body: `<h3>5.1 Entry to Automation</h3><p>The Silver Tier requires 1500 credits. Benefits include 500MB decentralized storage and Lite AI Marketing tools to grow your initial audience presence.</p>`
         },
         {
             week: 6, title: "Premium Tier: Gold",
-            body: `<h3>6.1 Professional Expansion</h3><p>The Gold Tier requires 2500 credits monthly. All silver plan plus level unlocks 5GB of storage and Medium-tier AI Marketing to country level, automation for business asset movement and value conversons.</p>`
+            body: `<h3>6.1 Professional Expansion</h3><p>The Gold Tier requires 2500 credits. This level unlocks 5GB of storage and Medium-tier AI Marketing automation for high-volume asset movement.</p>`
         },
         {
             week: 7, title: "Premium Tier: Diamond",
-            body: `<h3>7.1 Master Sovereignty</h3><p>The Diamond Tier (3000 credits monthly) represents higher digital partner in the ecosystem. all silver and gold plus it includes 10GB storage and Advanced AI business marketing to all Africa and global, automated workflows, extrapolated accounting system and access to all other ecosystem utility apps, for the elite digital partners.</p>'
+            body: `<h3>7.1 Master Sovereignty</h3><p>The Diamond Tier (3000 credits) represents total digital mastery. It includes 10GB storage and Advanced AI business workflows for the elite digital provider.</p>`
         },
         {
             week: 8, title: "Final Master Validation",
-            body: `<h3>8.1 Graduation, Certification & Verification</h3><p>This final lesson covers Validator, Agent and Admin Tasks, activites and responsibilities on the network including earning potential. Completing this module validates your proficiency. You will be redirected to the official exam for "Verified Pioneer" certification.</p>`
+            body: `<h3>8.1 Graduation & Verification</h3><p>Completing this module validates your proficiency. You will be redirected to the official exam for "Verified Provider" certification.</p>`
         }
     ];
 
@@ -123,7 +123,7 @@
                     <button class="btn btn-prev" onclick="changeWeek(-1)" ${activeWeek === 1 ? 'style="visibility:hidden"' : ''}>PREVIOUS</button>
                     ${activeWeek < 8 ? 
                         `<button class="btn btn-next" onclick="changeWeek(1)">COMPLETE & NEXT</button>` : 
-                        `<button class="btn btn-exam" onclick="goToExam()">TAKE FINAL EXAM HERE</button>`
+                        `<button class="btn btn-exam" onclick="goToExam()">TAKE FINAL EXAM</button>`
                     }
                 </div>
             </div>
